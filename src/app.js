@@ -15,10 +15,10 @@ const allowedHeaders = ['Content-Type'];
 // Damit verraten wir nicht direkt: "Hey, ich bin Express!".
 app.disable('x-powered-by');
 
-// CORS ist wie eine Türliste für Browser-Anfragen.
+// CORS prüft, welche Webseite unsere API nutzen darf.
 app.use(cors({
   origin(origin, callback) {
-    // Ohne Origin ist z. B. curl. Die erlauben wir hier.
+    // Manche Tools senden keine Origin. Das ist hier okay.
     callback(null, !origin || origin === allowedOrigin);
   },
   methods: allowedMethods,
