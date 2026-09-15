@@ -1,6 +1,7 @@
 const assert = require('node:assert/strict');
 const test = require('node:test');
-const { app, feedbackEntries } = require('../src/app');
+const { app } = require('../src/app');
+const { feedbackEntries } = require('../src/data/feedbackStore');
 
 function listen() {
   return new Promise((resolve) => {

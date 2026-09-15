@@ -62,6 +62,23 @@ curl -i -X POST http://localhost:4000/api/feedback \
 - Unerwartete Serverfehler liefern keine Stacktraces oder internen Pfade.
 - CORS erlaubt nur die konfigurierte Origin und die benötigten Methoden/Header.
 
+## Projektstruktur
+
+```text
+src/
+  app.js                  # steckt die App zusammen
+  server.js               # startet den Server
+  config/                 # CORS-Einstellungen
+  controllers/            # hier passiert die eigentliche Arbeit
+  data/                   # kleine In-Memory-Datenablage
+  middleware/             # Prüfungen vor und nach den Routen
+  routes/                 # Routen mit Nesting
+  utils/                  # kleine Helfer für Responses
+  validators/             # prüft die Eingaben
+public/
+  index.html              # öffentliche Test-Datei
+```
+
 ## Tests
 
 ```bash
