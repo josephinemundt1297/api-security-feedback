@@ -15,7 +15,7 @@ const allowedHeaders = ['Content-Type'];
 // Damit verraten wir nicht direkt: "Hey, ich bin Express!".
 app.disable('x-powered-by');
 
-// CORS ist wie eine Tuerliste fuer Browser-Anfragen.
+// CORS ist wie eine Türliste für Browser-Anfragen.
 app.use(cors({
   origin(origin, callback) {
     // Ohne Origin ist z. B. curl. Die erlauben wir hier.
@@ -71,13 +71,13 @@ function validateFeedback(body) {
     return ['Request-Body muss ein JSON-Objekt sein.'];
   }
 
-  // Extra-Felder wollen wir nicht, sonst koennte jemand Mist mitschicken.
+  // Extra-Felder wollen wir nicht, sonst könnte jemand Mist mitschicken.
   const unexpectedFields = Object.keys(body).filter((field) => !allowedFields.includes(field));
   if (unexpectedFields.length > 0) {
     details.push(`Unerwartete Felder: ${unexpectedFields.join(', ')}`);
   }
 
-  // Alle drei Felder muessen Text sein.
+  // Alle drei Felder müssen Text sein.
   for (const field of allowedFields) {
     if (typeof body[field] !== 'string') {
       details.push(`${field} muss als String vorhanden sein.`);
@@ -97,7 +97,7 @@ function validateFeedback(body) {
 
   if (typeof body.email === 'string') {
     const email = body.email.trim();
-    // Das ist kein perfekter Mail-Check, aber gut genug fuer diese Uebung.
+    // Das ist kein perfekter Mail-Check, aber gut genug für diese Übung.
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (email.length === 0) {
       details.push('email darf nicht leer sein.');
@@ -132,7 +132,7 @@ function methodNotAllowed(allowed) {
   };
 }
 
-// Kleiner Check: Laeuft die API?
+// Kleiner Check: Läuft die API?
 app.get('/health', (req, res) => {
   return success(res, 200, {
     status: 'ok'
@@ -157,7 +157,7 @@ app.post('/api/feedback', (req, res) => {
   const details = validateFeedback(req.body);
   // Wenn etwas falsch ist, speichern wir nichts.
   if (details.length > 0) {
-    return failure(res, 400, 'Ungueltige Eingabedaten', details);
+    return failure(res, 400, 'Ungültige Eingabedaten', details);
   }
 
   // Jetzt bauen wir den sauberen Feedback-Eintrag.
@@ -167,7 +167,7 @@ app.post('/api/feedback', (req, res) => {
     email: req.body.email.trim().toLowerCase(),
     message: req.body.message.trim(),
     createdAt: new Date().toISOString(),
-    // Intern okay, aber das schicken wir nicht an den Client zurueck.
+    // Intern okay, aber das schicken wir nicht an den Client zurück.
     internalSource: req.ip
   };
   nextId += 1;
@@ -185,11 +185,11 @@ app.use((req, res) => {
   ]);
 });
 
-// Letztes Sicherheitsnetz fuer unerwartete Fehler.
+// Letztes Sicherheitsnetz für unerwartete Fehler.
 app.use((err, req, res, next) => {
   // Kaputtes JSON ist ein Client-Fehler, kein Server-Geheimnis.
   if (err instanceof SyntaxError && 'body' in err) {
-    return failure(res, 400, 'Ungueltiges JSON', [
+    return failure(res, 400, 'Ungültiges JSON', [
       'Der Request-Body konnte nicht als JSON gelesen werden.'
     ]);
   }

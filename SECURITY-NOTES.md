@@ -2,22 +2,22 @@
 
 ## Projektbezogene Risikoanalyse
 
-### Fehlende Eingabepruefung
+### Fehlende Eingabeprüfung
 
-Ohne Validierung koennte `POST /api/feedback` leere Werte, falsche Datentypen, sehr lange Texte oder unerwartete Felder wie `role` speichern. Das waere riskant, weil der Client nicht vertrauenswuerdig ist.
+Ohne Validierung könnte `POST /api/feedback` leere Werte, falsche Datentypen, sehr lange Texte oder unerwartete Felder wie `role` speichern. Das wäre riskant, weil der Client nicht vertrauenswürdig ist.
 
 Umsetzung im Projekt:
 
 - Pflichtfelder `name`, `email` und `message`
-- Typpruefung auf Strings
+- Typprüfung auf Strings
 - `trim()` gegen leere Strings und reine Leerzeichen
-- Laengenlimits fuer alle Eingaben
+- Längenlimits für alle Eingaben
 - plausibles E-Mail-Format
 - Positivliste erlaubter Felder
 
 ### Zu detaillierte Fehlermeldungen
 
-Express- oder JavaScript-Fehler duerfen nicht als Stacktrace an Clients gehen, weil dadurch interne Details sichtbar werden koennen.
+Express- oder JavaScript-Fehler dürfen nicht als Stacktrace an Clients gehen, weil dadurch interne Details sichtbar werden können.
 
 Umsetzung im Projekt:
 
@@ -25,9 +25,9 @@ Umsetzung im Projekt:
 - generische JSON-Fehler bei unerwarteten Serverfehlern
 - Syntaxfehler in JSON werden als kontrollierter `400` beantwortet
 
-### Unnoetige Endpunkte oder Informationen
+### Unnötige Endpunkte oder Informationen
 
-Jeder zusaetzliche Pfad vergroessert die Angriffsfläche. Die API bietet deshalb nur `GET /health`, `GET /api/feedback` und `POST /api/feedback` an.
+Jeder zusätzliche Pfad vergrößert die Angriffsfläche. Die API bietet deshalb nur `GET /health`, `GET /api/feedback` und `POST /api/feedback` an.
 
 Umsetzung im Projekt:
 
@@ -35,9 +35,9 @@ Umsetzung im Projekt:
 - gespeicherte interne Felder wie `internalSource` werden nicht in API-Responses ausgegeben
 - `X-Powered-By` ist deaktiviert
 
-### Zu grosszuegig erlaubte HTTP-Methoden
+### Zu großzügig erlaubte HTTP-Methoden
 
-Nicht benoetigte Methoden wie `PUT`, `PATCH` oder `DELETE` sollen nicht stillschweigend akzeptiert werden.
+Nicht benötigte Methoden wie `PUT`, `PATCH` oder `DELETE` sollen nicht stillschweigend akzeptiert werden.
 
 Umsetzung im Projekt:
 
@@ -45,9 +45,9 @@ Umsetzung im Projekt:
 - `/api/feedback` erlaubt nur `GET` und `POST`
 - andere Methoden bekommen `405 Method Not Allowed` mit `Allow`-Header
 
-### CORS ohne Einschraenkung
+### CORS ohne Einschränkung
 
-`Access-Control-Allow-Origin: *` waere fuer eine echte Anwendungs-API zu weit offen. CORS ersetzt keine Authentifizierung, sollte aber trotzdem gezielt konfiguriert werden.
+`Access-Control-Allow-Origin: *` wäre für eine echte Anwendungs-API zu weit offen. CORS ersetzt keine Authentifizierung, sollte aber trotzdem gezielt konfiguriert werden.
 
 Umsetzung im Projekt:
 

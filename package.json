@@ -1,7 +1,7 @@
 {
   "name": "api-security-feedback",
   "version": "1.0.0",
-  "description": "Kleine Express-Feedback-API mit grundlegenden API-Security- und CORS-Massnahmen.",
+  "description": "Kleine Express-Feedback-API mit grundlegenden API-Security- und CORS-Maßnahmen.",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",

@@ -55,7 +55,7 @@ test('POST /api/feedback rejects invalid input', async () => {
 
   assert.equal(response.status, 400);
   assert.equal(body.success, false);
-  assert.equal(body.error, 'Ungueltige Eingabedaten');
+  assert.equal(body.error, 'Ungültige Eingabedaten');
   assert.ok(body.details.length >= 4);
 });
 

@@ -34,9 +34,9 @@ curl -i http://localhost:4000/health \
 
 Erwartung:
 
-- Status `200 OK`, weil CORS keine allgemeine Zugriffskontrolle fuer curl ist
+- Status `200 OK`, weil CORS keine allgemeine Zugriffskontrolle für curl ist
 - kein Header `Access-Control-Allow-Origin`
-- Browser-JavaScript von dieser Origin duerfte die Antwort nicht verwenden
+- Browser-JavaScript von dieser Origin dürfte die Antwort nicht verwenden
 
 Ergebnis am 15.09.2026:
 
@@ -57,8 +57,8 @@ Erwartung:
 
 - Status `204 No Content`
 - Header `Access-Control-Allow-Origin: http://localhost:3000`
-- Header `Access-Control-Allow-Methods` enthaelt `GET,POST,OPTIONS`
-- Header `Access-Control-Allow-Headers` enthaelt `Content-Type`
+- Header `Access-Control-Allow-Methods` enthält `GET,POST,OPTIONS`
+- Header `Access-Control-Allow-Headers` enthält `Content-Type`
 
 Ergebnis am 15.09.2026:
 
@@ -86,7 +86,7 @@ Ergebnis am 15.09.2026:
 
 - Status `201 Created`
 - `Access-Control-Allow-Origin: http://localhost:3000`
-- Body enthaelt `success: true` und den gespeicherten Feedback-Eintrag
+- Body enthält `success: true` und den gespeicherten Feedback-Eintrag
 
 ## 5. Verhalten mit anderer ALLOWED_ORIGIN
 
